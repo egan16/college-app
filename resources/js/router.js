@@ -7,6 +7,7 @@ import Example from './views/Example'
 import CoursesIndex from './views/courses/Index'
 import CoursesEdit from './views/courses/Edit'
 import CoursesCreate from './views/courses/Create'
+import CoursesShow from './views/courses/Show'
 
 Vue.use(Router)
 
@@ -38,6 +39,12 @@ export default new Router({
       path: '/courses/create',
       name: 'coursesCreate',
       component: CoursesCreate
+    },
+    {
+      path: '/courses/show/:id',
+      name: 'coursesShow',
+      component: CoursesShow
     }
+
   ]
 })

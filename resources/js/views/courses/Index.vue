@@ -14,7 +14,7 @@
         </b-head>
         <b-body>
           <b-tr v-for="item in items" :key="item.id">
-            <b-td>{{ item.title }}</b-td>
+            <b-td><router-link :to="`/courses/show/${item.id}`">{{ item.title }}</router-link></b-td>
             <b-td>{{ item.code }}</b-td>
             <b-td>{{ item.description }}</b-td>
             <b-td>{{ item.points }}</b-td>
