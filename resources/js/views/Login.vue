@@ -1,14 +1,23 @@
 <template>
   <div>
     <h3 v-if="loggedIn">You are logged in</h3>
-    <div v-else>
-      Welcome! you can log in or register!
-    </div>
+    <b-form v-else @submit="onSubmit">
+      <b-form-group id="input-group-1" label="Email address" label-form="input-1" description="We'll never share your email with anyone else">
+        <b-form-input id="input-1" type="email" required placeholder="Enter email" v-model="form.email">
+        </b-form-input>
+      </b-form-group>
+      <b-form-group id="input-group-2" label="Password" label-form="input-2">
+        <b-form-input id="input-2" type="password" required placeholder="Enter password" v-model="form.password">
+        </b-form-input>
+      </b-form-group>
+      <b-button type="submit" varient="primary">Submit
+      </b-button>
+    </b-form>
   </div>
 </template>
 <script>
 export default {
-  name: 'index',
+  name: 'login',
   components: {
 
   },
