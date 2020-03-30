@@ -2190,6 +2190,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         localStorage.setItem('token', response.data.token);
         app.loggedIn = true;
+        app.$router.push('/');
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2262,6 +2263,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         localStorage.setItem('token', response.data.token);
         app.loggedIn = true;
+        app.$router.push('/');
       })["catch"](function (error) {
         console.log(error);
       });
@@ -75659,8 +75661,28 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.loggedIn
-      ? _c("h3", [_vm._v("You are logged in")])
-      : _c("div", [_vm._v("\n    Welcome! you can log in or register!\n  ")])
+      ? _c(
+          "h3",
+          [
+            _vm._v("You are logged in.. view "),
+            _c("router-link", { attrs: { to: "/courses" } }, [
+              _vm._v("courses")
+            ])
+          ],
+          1
+        )
+      : _c(
+          "div",
+          [
+            _vm._v("\n    Welcome! you can "),
+            _c("router-link", { attrs: { to: "/login" } }, [_vm._v("log in")]),
+            _vm._v(" or "),
+            _c("router-link", { attrs: { to: "/register" } }, [
+              _vm._v("register")
+            ])
+          ],
+          1
+        )
   ])
 }
 var staticRenderFns = []
