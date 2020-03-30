@@ -2,11 +2,10 @@
 <b-row>
   <b-col cols="8">
     <b-card title="Add Course" tag="article">
-      <b-form @submit="onSubmit">
+      <b-form @submit="onSubmit" @reset="onReset">
         <b-form-group id="input-group-1" label="Title" label-form="input-1">
           <b-form-input id="input-1" type="text" required placeholder="Enter title" v-model="form.title">
           </b-form-input>
-
         </b-form-group>
         <b-form-group id="input-group-2" label="Code" label-form="input-2">
           <b-form-input id="input-2" type="text" required placeholder="Enter code" v-model="form.code">
@@ -31,8 +30,8 @@
           </b-form-input>
         </b-form-group>
 
-        <b-button type="submit" varient="primary">Submit
-        </b-button>
+        <b-button type="submit" varient="primary">Submit</b-button>
+        <b-button type="reset" variant="danger">Reset</b-button>
       </b-form>
     </b-card>
   </b-col>
@@ -75,7 +74,7 @@ export default {
       let app = this;
       let token = localStorage.getItem('token');
 
-      axios.post('api/course', {
+      axios.post(`/api/courses`, {
           title: app.form.title,
           code: app.form.code,
           description: app.form.description,
@@ -94,7 +93,21 @@ export default {
 
           app.errors = error.response.data.error
         });
-    }
+    },
+      onReset(evt) {
+        evt.preventDefault()
+        // Reset our form values
+        this.form.title = ''
+        this.form.code = ''
+        this.form.description = ''
+        this.form.points = ''
+        this.form.level = ''
+        // Trick to reset/clear native browser form validation state
+        this.show = false
+        this.$nextTick(() => {
+          this.show = true
+        })
+      }
   }
 }
 </script>

@@ -12,6 +12,11 @@ import CoursesEdit from './views/courses/Edit'
 import CoursesCreate from './views/courses/Create'
 import CoursesShow from './views/courses/Show'
 
+import LecturersIndex from './views/lecturers/Index'
+import LecturersEdit from './views/lecturers/Edit'
+import LecturersCreate from './views/lecturers/Create'
+import LecturersShow from './views/lecturers/Show'
+
 Vue.use(Router)
 
 export default new Router({
@@ -62,6 +67,26 @@ export default new Router({
       path: '/courses/show/:id',
       name: 'coursesShow',
       component: CoursesShow
+    },
+    {
+      path: '/lecturers',
+      name: 'lecturersIndex',
+      component: LecturersIndex
+    },
+    {
+      path: '/lecturers/edit/:id',
+      name: 'lecturersEdit',
+      component: LecturersEdit
+    },
+    {
+      path: '/lecturers/create',
+      name: 'lecturersCreate',
+      component: LecturersCreate
+    },
+    {
+      path: '/lecturers/show/:id',
+      name: 'lecturersShow',
+      component: LecturersShow
     }
 
   ]
