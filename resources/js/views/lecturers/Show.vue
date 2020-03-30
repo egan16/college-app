@@ -8,7 +8,7 @@
             <b-th>Address</b-th>
             <b-th>Phone Number</b-th>
             <b-th>Email Address</b-th>
-            <!-- <b-th>Actions</b-th> -->
+            <b-th>Actions</b-th>
           </b-tr>
         </b-head>
         <b-body>
@@ -17,10 +17,11 @@
             <b-td>{{ lecturer.address }}</b-td>
             <b-td>{{ lecturer.phone }}</b-td>
             <b-td>{{ lecturer.email }}</b-td>
-            <!-- <b-td><router-link :to="`/lecturers/edit/${item.id}`">Edit</router-link></b-td> -->
+            <b-td><router-link :to="`/lecturers/edit/${lecturer.id}`">Edit</router-link></b-td>
           </b-tr>
         </b-body>
       </b-table-simple>
+      <!-- <b-button @delete="onDelete" type="delete" variant="danger">Delete</b-button> -->
     </b-col>
   </b-row>
 </template>
@@ -56,7 +57,30 @@ export default {
 
   },
   methods: {
-
+    // onDelete(evt) {
+    //   evt.preventDefault()
+    //   let app = this;
+    //   let token = localStorage.getItem('token');
+    //
+    //   axios.delete(`/api/lecturers/${app.$route.params.id}`, {
+    //       name: app.form.name,
+    //       address: app.form.address,
+    //       phone: app.form.phone,
+    //       email: app.form.email
+    //     }, {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`
+    //       }
+    //     })
+    //     .then(function(response) {
+    //       app.$router.push('/lecturers');
+    //     })
+    //     .catch(function(error) {
+    //       console.log(error.response.data);
+    //
+    //       app.errors = error.response.data.error
+    //     });
+    // }
   }
 }
 </script>

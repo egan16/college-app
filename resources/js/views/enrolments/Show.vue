@@ -4,22 +4,22 @@
       <b-table-simple hover responsive>
         <b-head>
           <b-tr>
-            <b-th>Title</b-th>
-            <b-th>Code</b-th>
-            <b-th>Description</b-th>
-            <b-th>Points</b-th>
-            <b-th>Level</b-th>
+            <b-th>Date</b-th>
+            <b-th>Time</b-th>
+            <b-th>Status</b-th>
+            <b-th>Course</b-th>
+            <b-th>Lecturer</b-th>
             <b-th>Actions</b-th>
           </b-tr>
         </b-head>
         <b-body>
           <b-tr>
-            <b-td>{{ course.title }}</b-td>
-            <b-td>{{ course.code }}</b-td>
-            <b-td>{{ course.description }}</b-td>
-            <b-td>{{ course.points }}</b-td>
-            <b-td>{{ course.level }}</b-td>
-            <b-td><router-link :to="`/courses/edit/${course.id}`">Edit</router-link></b-td>
+            <b-td>{{ enrolment.date }}</b-td>
+            <b-td>{{ enrolment.time }}</b-td>
+            <b-td>{{ enrolment.status }}</b-td>
+            <b-td><router-link :to="`/courses/show/${enrolment.course.id}`">{{ enrolment.course.title }}</router-link></b-td>
+            <b-td><router-link :to="`/lecturers/show/${enrolment.lecturer.id}`">{{ enrolment.lecturer.name }}</router-link></b-td>
+            <b-td><router-link :to="`/enrolments/edit/${enrolment.id}`">Edit</router-link></b-td>
           </b-tr>
         </b-body>
       </b-table-simple>
@@ -30,7 +30,7 @@
 export default {
   data() {
     return {
-      course: {},
+      enrolment: {},
       show: true,
       loggedIn: false
     }
@@ -46,11 +46,11 @@ export default {
 
     let app = this;
     let token = localStorage.getItem('token');
-    axios.get(`/api/courses/${app.$route.params.id}`, {
+    axios.get(`/api/enrolments/${app.$route.params.id}`, {
       headers: { Authorization: "Bearer " + token }
     })
     .then(function (response) {
-      app.course = response.data.data;
+      app.enrolment = response.data.data;
     })
     .catch(function (error) {
       console.log(error);

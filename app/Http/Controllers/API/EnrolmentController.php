@@ -67,7 +67,7 @@ class EnrolmentController extends Controller
 
     public function show($id)
     {
-        $enrolment = Enrolment::find($id);
+        $enrolment = Enrolment::find($id)->load(['course', 'lecturer']);
 
         if ($enrolment === null) {
           $statusMsg = 'Enrolment not found!';
