@@ -34,18 +34,27 @@ export default {
     }
   },
   created() {
-    let app = this;
-    let token = localStorage.getItem('token');
-    axios.get('/api/courses', {
-      headers: { Authorization: 'Bearer ' + token}
-    })
-    .then(function (response) {
-       console.log(response.data);
-       app.items = response.data.data;
-    })
-    .catch(function (error) {
-       console.log(error);
-    })
+    if (localStorage.getItem('token')) {
+      this.loggedIn = true;
+      let app = this;
+      let token = localStorage.getItem('token');
+      axios.get('/api/courses', {
+        headers: { Authorization: 'Bearer ' + token}
+      })
+      .then(function (response) {
+         console.log(response.data);
+         app.items = response.data.data;
+      })
+      .catch(function (error) {
+         console.log(error);
+      })
+    }
+    // if not logged in refirected to index page
+    else {
+      this.loggedIn = false;
+      this.$router.push('/');
+    }
+
   },
   methods: {
 
