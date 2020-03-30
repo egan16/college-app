@@ -5,6 +5,7 @@ import Index from './views/Index'
 import Login from './views/Login'
 import Register from './views/Register'
 import Example from './views/Example'
+import NoAccess from './views/NoAccess'
 
 import CoursesIndex from './views/courses/Index'
 import CoursesEdit from './views/courses/Edit'
@@ -36,6 +37,11 @@ export default new Router({
       path: '/example',
       name: 'example',
       component: Example
+    },
+    {
+      path: '/noAccess',
+      name: 'noAccess',
+      component: NoAccess
     },
     {
       path: '/courses',

@@ -66,7 +66,7 @@ export default {
     // if not logged in refirected to index page
     else {
       this.loggedIn = false;
-      this.$router.push('/');
+      this.$router.push('/noAccess');
     }
   },
   methods: {
