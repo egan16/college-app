@@ -1999,6 +1999,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "myNavbar",
   // checks if user is logged in... allows user to view page if logged in
@@ -75951,6 +75954,23 @@ var render = function() {
                       _c(
                         "b-dropdown-item",
                         { attrs: { to: "/courses/create" } },
+                        [_vm._v("Create")]
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-nav-item-dropdown",
+                    { attrs: { text: "Lecturers", left: "" } },
+                    [
+                      _c("b-dropdown-item", { attrs: { to: "/lecturers" } }, [
+                        _vm._v("View All")
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "b-dropdown-item",
+                        { attrs: { to: "/lecturers/create" } },
                         [_vm._v("Create")]
                       )
                     ],

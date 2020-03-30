@@ -4,11 +4,14 @@
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <!-- <router-link to="/">Home</router-link> -->
         <b-nav-item to="/">Home</b-nav-item>
         <b-nav-item-dropdown text="Courses" left>
           <b-dropdown-item to="/courses">View All</b-dropdown-item>
           <b-dropdown-item to="/courses/create">Create</b-dropdown-item>
+        </b-nav-item-dropdown>
+        <b-nav-item-dropdown text="Lecturers" left>
+          <b-dropdown-item to="/lecturers">View All</b-dropdown-item>
+          <b-dropdown-item to="/lecturers/create">Create</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
 
