@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 v-if="loggedIn">You are logged in.. view <router-link :to="`/courses`">courses</router-link></h3>
+    <h3 v-if="loggedIn">You are logged in.. view <router-link :to="`/courses`">courses</router-link>, view <router-link :to="`/lecturers`">lecturers</router-link></h3>
     <div v-else>
       Welcome! you can <router-link :to="`/login`">log in</router-link> or <router-link :to="`/register`">register</router-link>
     </div>
@@ -28,7 +28,7 @@ export default {
     }
   },
   methods: {
-    
+
   }
 }
 </script>

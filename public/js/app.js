@@ -76152,6 +76152,10 @@ var render = function() {
             _vm._v("You are logged in.. view "),
             _c("router-link", { attrs: { to: "/courses" } }, [
               _vm._v("courses")
+            ]),
+            _vm._v(", view "),
+            _c("router-link", { attrs: { to: "/lecturers" } }, [
+              _vm._v("lecturers")
             ])
           ],
           1
