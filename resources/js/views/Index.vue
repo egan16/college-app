@@ -14,11 +14,7 @@ export default {
   },
   data() {
     return {
-      form: {
-        email: '',
-        password: ''
-      },
-      loggedIn: false
+
     }
   },
   // checks if user is logged in... allows user to view page if logged in
@@ -32,23 +28,7 @@ export default {
     }
   },
   methods: {
-    onSubmit(evt) {
-      evt.preventDefault();
-
-      let app = this;
-
-      axios.post('/api/login', {
-        email: app.form.email,
-        password: app.form.password
-      })
-      .then(function(response){
-        localStorage.setItem('token', response.data.token)
-        app.loggedIn = true;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-    },
+    
   }
 }
 </script>

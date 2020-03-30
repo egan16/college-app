@@ -2120,13 +2120,7 @@ __webpack_require__.r(__webpack_exports__);
   name: 'index',
   components: {},
   data: function data() {
-    return {
-      form: {
-        email: '',
-        password: ''
-      },
-      loggedIn: false
-    };
+    return {};
   },
   // checks if user is logged in... allows user to view page if logged in
   created: function created() {
@@ -2137,21 +2131,7 @@ __webpack_require__.r(__webpack_exports__);
         this.loggedIn = false;
       }
   },
-  methods: {
-    onSubmit: function onSubmit(evt) {
-      evt.preventDefault();
-      var app = this;
-      axios.post('/api/login', {
-        email: app.form.email,
-        password: app.form.password
-      }).then(function (response) {
-        localStorage.setItem('token', response.data.token);
-        app.loggedIn = true;
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
