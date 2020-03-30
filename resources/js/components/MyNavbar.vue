@@ -49,9 +49,12 @@ export default {
   },
   methods: {
     logout() {
-      localStorage.removeItem('token');
+      let app = this;
+
       console.log("Logged out");
-      // this.$router.push('/');
+      localStorage.removeItem('token');
+      app.loggedIn = false;
+      app.$router.push('/');
     }
   }
 };

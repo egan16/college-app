@@ -2012,8 +2012,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logout: function logout() {
+      var app = this;
+      console.log("Logged out");
       localStorage.removeItem('token');
-      console.log("Logged out"); // this.$router.push('/');
+      app.loggedIn = false;
+      app.$router.push('/');
     }
   }
 });
