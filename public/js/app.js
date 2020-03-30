@@ -1993,9 +1993,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "myNavbar",
-  methods: {}
+  // checks if user is logged in... allows user to view page if logged in
+  created: function created() {
+    if (localStorage.getItem('token')) {
+      this.loggedIn = true;
+    } // if not logged in refirected to index page
+    else {
+        this.loggedIn = false;
+      }
+  },
+  methods: {
+    logout: function logout() {
+      localStorage.removeItem('token');
+      console.log("Logged out"); // this.$router.push('/');
+    }
+  }
 });
 
 /***/ }),
@@ -75523,39 +75543,67 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "b-navbar-nav",
-                { staticClass: "ml-auto" },
-                [
-                  _c(
-                    "b-nav-item-dropdown",
-                    {
-                      attrs: { right: "" },
-                      scopedSlots: _vm._u([
-                        {
-                          key: "button-content",
-                          fn: function() {
-                            return [_c("em", [_vm._v("User")])]
+              _c("b-navbar-nav", { staticClass: "ml-auto" }, [
+                _vm.loggedIn
+                  ? _c(
+                      "div",
+                      [
+                        _c(
+                          "b-nav-item-dropdown",
+                          {
+                            attrs: { right: "" },
+                            scopedSlots: _vm._u(
+                              [
+                                {
+                                  key: "button-content",
+                                  fn: function() {
+                                    return [_c("em", [_vm._v("User")])]
+                                  },
+                                  proxy: true
+                                }
+                              ],
+                              null,
+                              false,
+                              4258386881
+                            )
                           },
-                          proxy: true
-                        }
-                      ])
-                    },
-                    [
-                      _vm._v(" "),
-                      _c("router-link", { attrs: { to: "/users/1" } }, [
-                        _vm._v("Profile")
-                      ]),
-                      _vm._v(" "),
-                      _c("b-dropdown-item", { on: { click: _vm.logout } }, [
-                        _vm._v("Log Out")
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
+                          [
+                            _vm._v(" "),
+                            _c("router-link", { attrs: { to: "/users/1" } }, [
+                              _vm._v("Profile")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "b-dropdown-item",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    return _vm.logout()
+                                  }
+                                }
+                              },
+                              [_vm._v("Log Out")]
+                            )
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  : _c(
+                      "div",
+                      [
+                        _c("b-nav-item", { attrs: { to: "/login" } }, [
+                          _vm._v("Login")
+                        ]),
+                        _vm._v(" "),
+                        _c("b-nav-item", { attrs: { to: "/register" } }, [
+                          _vm._v("Register")
+                        ])
+                      ],
+                      1
+                    )
+              ])
             ],
             1
           )
