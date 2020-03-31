@@ -2131,6 +2131,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'index',
   components: {},
@@ -76748,18 +76753,40 @@ var render = function() {
             1
           )
         ])
-      : _c(
-          "div",
-          [
-            _vm._v("\n    Welcome! you can "),
-            _c("router-link", { attrs: { to: "/login" } }, [_vm._v("log in")]),
-            _vm._v(" or "),
-            _c("router-link", { attrs: { to: "/register" } }, [
-              _vm._v("register")
-            ])
-          ],
-          1
-        )
+      : _c("div", [
+          _c("h2", [_vm._v("Welcome to the college app!")]),
+          _vm._v(" "),
+          _c("h4", { staticClass: "h4margin" }, [
+            _vm._v("Get started by clicking the button to log in or sign up.")
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            [
+              _c(
+                "b-button",
+                {
+                  staticClass: "buttonsMargin",
+                  attrs: { size: "lg", to: "/login", variant: "outline-dark" }
+                },
+                [_vm._v("Log in")]
+              ),
+              _vm._v(" "),
+              _c(
+                "b-button",
+                {
+                  attrs: {
+                    size: "lg",
+                    to: "/register",
+                    variant: "outline-dark"
+                  }
+                },
+                [_vm._v("Register")]
+              )
+            ],
+            1
+          )
+        ])
   ])
 }
 var staticRenderFns = []

@@ -10,7 +10,12 @@
       </div>
     </div>
     <div v-else>
-      Welcome! you can <router-link :to="`/login`">log in</router-link> or <router-link :to="`/register`">register</router-link>
+      <h2>Welcome to the college app!</h2>
+      <h4 class="h4margin">Get started by clicking the button to log in or sign up.</h4>
+      <div>
+        <b-button class="buttonsMargin" size="lg" :to="`/login`" variant="outline-dark">Log in</b-button>
+        <b-button size="lg" :to="`/register`" variant="outline-dark">Register</b-button>
+      </div>
     </div>
   </div>
 </template>
