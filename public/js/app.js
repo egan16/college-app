@@ -76606,6 +76606,10 @@ var render = function() {
             _vm._v(", view "),
             _c("router-link", { attrs: { to: "/lecturers" } }, [
               _vm._v("lecturers")
+            ]),
+            _vm._v(" or view "),
+            _c("router-link", { attrs: { to: "/enrolments" } }, [
+              _vm._v("enrolments")
             ])
           ],
           1
