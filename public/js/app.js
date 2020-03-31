@@ -77730,21 +77730,68 @@ var render = function() {
                       }
                     },
                     [
-                      _c("b-form-input", {
-                        attrs: {
-                          id: "input-3",
-                          type: "text",
-                          required: "",
-                          placeholder: "Enter status"
+                      _c(
+                        "b-form-radio",
+                        {
+                          attrs: { name: "status-radios", value: "interested" },
+                          model: {
+                            value: _vm.form.status,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "status", $$v)
+                            },
+                            expression: "form.status"
+                          }
                         },
-                        model: {
-                          value: _vm.form.status,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "status", $$v)
+                        [_vm._v("Interested")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-radio",
+                        {
+                          attrs: { name: "status-radios", value: "assigned" },
+                          model: {
+                            value: _vm.form.status,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "status", $$v)
+                            },
+                            expression: "form.status"
+                          }
+                        },
+                        [_vm._v("Assigned")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-radio",
+                        {
+                          attrs: { name: "status-radios", value: "associate" },
+                          model: {
+                            value: _vm.form.status,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "status", $$v)
+                            },
+                            expression: "form.status"
+                          }
+                        },
+                        [_vm._v("Associate")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-form-radio",
+                        {
+                          attrs: {
+                            name: "status-radios",
+                            value: "career_break"
                           },
-                          expression: "form.status"
-                        }
-                      })
+                          model: {
+                            value: _vm.form.status,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "status", $$v)
+                            },
+                            expression: "form.status"
+                          }
+                        },
+                        [_vm._v("Career break")]
+                      )
                     ],
                     1
                   ),
