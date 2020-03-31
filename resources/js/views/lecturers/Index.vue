@@ -13,11 +13,14 @@
         </b-head>
         <b-body>
           <b-tr v-for="item in items" :key="item.id">
-            <b-td><router-link :to="`/lecturers/show/${item.id}`">{{ item.name }}</router-link></b-td>
+            <b-td>{{ item.name }}</b-td>
             <b-td>{{ item.address }}</b-td>
             <b-td>{{ item.phone }}</b-td>
             <b-td>{{ item.email }}</b-td>
-            <b-td><router-link :to="`/lecturers/edit/${item.id}`">Edit</router-link></b-td>
+            <b-td>
+              <b-button size="sm" variant="dark" :to="`/lecturers/show/${item.id}`">View</b-button>
+              <b-button size="sm" variant="outline-secondary" :to="`/lecturers/edit/${item.id}`">Edit</b-button>
+            </b-td>
           </b-tr>
         </b-body>
       </b-table-simple>

@@ -3479,6 +3479,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -79054,17 +79057,7 @@ var render = function() {
                     "b-tr",
                     { key: item.id },
                     [
-                      _c(
-                        "b-td",
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: "/lecturers/show/" + item.id } },
-                            [_vm._v(_vm._s(item.name))]
-                          )
-                        ],
-                        1
-                      ),
+                      _c("b-td", [_vm._v(_vm._s(item.name))]),
                       _vm._v(" "),
                       _c("b-td", [_vm._v(_vm._s(item.address))]),
                       _vm._v(" "),
@@ -79076,8 +79069,26 @@ var render = function() {
                         "b-td",
                         [
                           _c(
-                            "router-link",
-                            { attrs: { to: "/lecturers/edit/" + item.id } },
+                            "b-button",
+                            {
+                              attrs: {
+                                size: "sm",
+                                variant: "dark",
+                                to: "/lecturers/show/" + item.id
+                              }
+                            },
+                            [_vm._v("View")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-button",
+                            {
+                              attrs: {
+                                size: "sm",
+                                variant: "outline-secondary",
+                                to: "/lecturers/edit/" + item.id
+                              }
+                            },
                             [_vm._v("Edit")]
                           )
                         ],
