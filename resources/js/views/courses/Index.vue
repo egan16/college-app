@@ -1,11 +1,7 @@
 <template>
 <b-row align-h="center">
   <b-col cols="12">
-    <b-table-simple hover responsive  id="my-table"
-
-      :per-page="perPage"
-      :current-page="currentPage"
-      small>
+    <b-table-simple hover responsive id="my-table" :per-page="perPage" :current-page="currentPage" small>
       <b-head>
         <b-tr>
           <b-th>Title</b-th>
@@ -18,15 +14,16 @@
       </b-head>
       <b-body>
         <b-tr v-for="item in items" :key="item.id">
-          <b-td>
-            <router-link :to="`/courses/show/${item.id}`">{{ item.title }}</router-link>
-          </b-td>
+          <b-td>{{ item.title }}</b-td>
           <b-td>{{ item.code }}</b-td>
           <b-td>{{ item.description }}</b-td>
           <b-td>{{ item.points }}</b-td>
           <b-td>{{ item.level }}</b-td>
           <b-td>
-            <router-link :to="`/courses/edit/${item.id}`">Edit</router-link>
+            <b-button size="sm" variant="dark" :to="`/courses/show/${item.id}`">View</b-button>
+          </b-td>
+          <b-td>
+            <b-button size="sm" variant="outline-secondary" :to="`/courses/edit/${item.id}`">Edit</b-button>
           </b-td>
         </b-tr>
       </b-body>
@@ -49,10 +46,10 @@ export default {
     }
   },
   computed: {
-      rows() {
-        return this.items.length
-      }
-    },
+    rows() {
+      return this.items.length
+    }
+  },
   created() {
     if (localStorage.getItem('token')) {
       this.loggedIn = true;

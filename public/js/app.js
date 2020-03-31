@@ -2653,9 +2653,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -77627,17 +77624,7 @@ var render = function() {
                     "b-tr",
                     { key: item.id },
                     [
-                      _c(
-                        "b-td",
-                        [
-                          _c(
-                            "router-link",
-                            { attrs: { to: "/courses/show/" + item.id } },
-                            [_vm._v(_vm._s(item.title))]
-                          )
-                        ],
-                        1
-                      ),
+                      _c("b-td", [_vm._v(_vm._s(item.title))]),
                       _vm._v(" "),
                       _c("b-td", [_vm._v(_vm._s(item.code))]),
                       _vm._v(" "),
@@ -77651,8 +77638,32 @@ var render = function() {
                         "b-td",
                         [
                           _c(
-                            "router-link",
-                            { attrs: { to: "/courses/edit/" + item.id } },
+                            "b-button",
+                            {
+                              attrs: {
+                                size: "sm",
+                                variant: "dark",
+                                to: "/courses/show/" + item.id
+                              }
+                            },
+                            [_vm._v("View")]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-td",
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: {
+                                size: "sm",
+                                variant: "outline-secondary",
+                                to: "/courses/edit/" + item.id
+                              }
+                            },
                             [_vm._v("Edit")]
                           )
                         ],
