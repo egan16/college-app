@@ -1,6 +1,14 @@
 <template>
   <div>
-    <h3 v-if="loggedIn">You are logged in.. view <router-link :to="`/courses`">courses</router-link>, view <router-link :to="`/lecturers`">lecturers</router-link> or view <router-link :to="`/enrolments`">enrolments</router-link></h3>
+    <div v-if="loggedIn">
+      <h2>Welcome to the college app!</h2>
+      <h4 class="h4margin">Get started by clicking the button of the section you want to visit.</h4>
+      <div>
+        <b-button class="buttonsMargin" size="lg" :to="`/courses`" variant="outline-dark">View courses</b-button>
+        <b-button class="buttonsMargin" size="lg" :to="`/lecturers`" variant="outline-dark">View lecturers</b-button>
+        <b-button size="lg" :to="`/enrolments`" variant="outline-dark">View enrolments</b-button>
+      </div>
+    </div>
     <div v-else>
       Welcome! you can <router-link :to="`/login`">log in</router-link> or <router-link :to="`/register`">register</router-link>
     </div>
@@ -33,4 +41,11 @@ export default {
 }
 </script>
 <style>
+.h4margin{
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+.buttonsMargin{
+  margin-right: 15px;
+}
 </style>
