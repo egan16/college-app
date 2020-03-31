@@ -1,7 +1,8 @@
 <template>
-  <b-row align-h="center">
-    <b-col cols="12">
-      <b-table-simple hover responsive>
+<b-row align-h="center">
+  <b-col cols="12">
+    <b-table-simple hover responsive>
+      <b-col cols="12">
         <b-head>
           <b-tr>
             <b-th>Name</b-th>
@@ -11,19 +12,22 @@
             <b-th>Actions</b-th>
           </b-tr>
         </b-head>
-        <b-body>
-          <b-tr>
-            <b-td>{{ lecturer.name }}</b-td>
-            <b-td>{{ lecturer.address }}</b-td>
-            <b-td>{{ lecturer.phone }}</b-td>
-            <b-td>{{ lecturer.email }}</b-td>
-            <b-td><router-link :to="`/lecturers/edit/${lecturer.id}`">Edit</router-link></b-td>
-          </b-tr>
-        </b-body>
-      </b-table-simple>
-      <!-- <b-button @delete="onDelete" type="delete" variant="danger">Delete</b-button> -->
-    </b-col>
-  </b-row>
+      </b-col>
+      <b-body>
+        <b-tr>
+          <b-td>{{ lecturer.name }}</b-td>
+          <b-td>{{ lecturer.address }}</b-td>
+          <b-td>{{ lecturer.phone }}</b-td>
+          <b-td>{{ lecturer.email }}</b-td>
+          <b-td>
+            <b-button size="sm" variant="outline-secondary" :to="`/lecturers/edit/${lecturer.id}`">Edit</b-button>
+          </b-td>
+        </b-tr>
+      </b-body>
+    </b-table-simple>
+    <!-- <b-button @delete="onDelete" type="delete" variant="danger">Delete</b-button> -->
+  </b-col>
+</b-row>
 </template>
 <script>
 export default {
@@ -38,22 +42,23 @@ export default {
     // console.log(localStorage.getItem('token'));
     if (localStorage.getItem('token')) {
       this.loggedIn = true;
-    }
-    else {
+    } else {
       this.loggedIn = false;
     }
 
     let app = this;
     let token = localStorage.getItem('token');
     axios.get(`/api/lecturers/${app.$route.params.id}`, {
-      headers: { Authorization: "Bearer " + token }
-    })
-    .then(function (response) {
-      app.lecturer = response.data.data;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      })
+      .then(function(response) {
+        app.lecturer = response.data.data;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
 
   },
   methods: {

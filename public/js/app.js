@@ -2730,6 +2730,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3168,6 +3172,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3523,6 +3535,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -77742,22 +77758,29 @@ var render = function() {
             { attrs: { hover: "", responsive: "" } },
             [
               _c(
-                "b-head",
+                "b-col",
+                { attrs: { cols: "12" } },
                 [
                   _c(
-                    "b-tr",
+                    "b-head",
                     [
-                      _c("b-th", [_vm._v("Title")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Code")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Description")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Points")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Level")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Actions")])
+                      _c(
+                        "b-tr",
+                        [
+                          _c("b-th", [_vm._v("Title")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Code")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Description")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Points")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Level")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Actions")])
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -77785,8 +77808,14 @@ var render = function() {
                         "b-td",
                         [
                           _c(
-                            "router-link",
-                            { attrs: { to: "/courses/edit/" + _vm.course.id } },
+                            "b-button",
+                            {
+                              attrs: {
+                                size: "sm",
+                                variant: "outline-secondary",
+                                to: "/courses/edit/" + _vm.course.id
+                              }
+                            },
                             [_vm._v("Edit")]
                           )
                         ],
@@ -78544,22 +78573,29 @@ var render = function() {
             { attrs: { hover: "", responsive: "" } },
             [
               _c(
-                "b-head",
+                "b-col",
+                { attrs: { cols: "12" } },
                 [
                   _c(
-                    "b-tr",
+                    "b-head",
                     [
-                      _c("b-th", [_vm._v("Date")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Time")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Status")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Course")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Lecturer")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Actions")])
+                      _c(
+                        "b-tr",
+                        [
+                          _c("b-th", [_vm._v("Date")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Time")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Status")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Course")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Lecturer")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Actions")])
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -78616,9 +78652,11 @@ var render = function() {
                         "b-td",
                         [
                           _c(
-                            "router-link",
+                            "b-button",
                             {
                               attrs: {
+                                size: "sm",
+                                variant: "outline-secondary",
                                 to: "/enrolments/edit/" + _vm.enrolment.id
                               }
                             },
@@ -79145,20 +79183,27 @@ var render = function() {
             { attrs: { hover: "", responsive: "" } },
             [
               _c(
-                "b-head",
+                "b-col",
+                { attrs: { cols: "12" } },
                 [
                   _c(
-                    "b-tr",
+                    "b-head",
                     [
-                      _c("b-th", [_vm._v("Name")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Address")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Phone Number")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Email Address")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Actions")])
+                      _c(
+                        "b-tr",
+                        [
+                          _c("b-th", [_vm._v("Name")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Address")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Phone Number")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Email Address")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Actions")])
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -79184,9 +79229,11 @@ var render = function() {
                         "b-td",
                         [
                           _c(
-                            "router-link",
+                            "b-button",
                             {
                               attrs: {
+                                size: "sm",
+                                variant: "outline-secondary",
                                 to: "/lecturers/edit/" + _vm.lecturer.id
                               }
                             },

@@ -1,7 +1,8 @@
 <template>
-  <b-row align-h="center">
-    <b-col cols="12">
-      <b-table-simple hover responsive>
+<b-row align-h="center">
+  <b-col cols="12">
+    <b-table-simple hover responsive>
+      <b-col cols="12">
         <b-head>
           <b-tr>
             <b-th>Title</b-th>
@@ -12,20 +13,23 @@
             <b-th>Actions</b-th>
           </b-tr>
         </b-head>
-        <b-body>
-          <b-tr>
-            <b-td>{{ course.title }}</b-td>
-            <b-td>{{ course.code }}</b-td>
-            <b-td>{{ course.description }}</b-td>
-            <b-td>{{ course.points }}</b-td>
-            <b-td>{{ course.level }}</b-td>
-            <b-td><router-link :to="`/courses/edit/${course.id}`">Edit</router-link></b-td>
-          </b-tr>
-        </b-body>
-      </b-table-simple>
-      <!-- <b-button @delete="onDelete" type="delete" variant="danger">Delete</b-button> -->
-    </b-col>
-  </b-row>
+      </b-col>
+      <b-body>
+        <b-tr>
+          <b-td>{{ course.title }}</b-td>
+          <b-td>{{ course.code }}</b-td>
+          <b-td>{{ course.description }}</b-td>
+          <b-td>{{ course.points }}</b-td>
+          <b-td>{{ course.level }}</b-td>
+          <b-td>
+            <b-button size="sm" variant="outline-secondary" :to="`/courses/edit/${course.id}`">Edit</b-button>
+          </b-td>
+          <!-- <b-td><b-button @delete="onDelete" type="delete" size="sm" variant="danger">Delete</b-button></b-td> -->
+        </b-tr>
+      </b-body>
+    </b-table-simple>
+  </b-col>
+</b-row>
 </template>
 <script>
 export default {
@@ -40,22 +44,23 @@ export default {
     // console.log(localStorage.getItem('token'));
     if (localStorage.getItem('token')) {
       this.loggedIn = true;
-    }
-    else {
+    } else {
       this.loggedIn = false;
     }
 
     let app = this;
     let token = localStorage.getItem('token');
     axios.get(`/api/courses/${app.$route.params.id}`, {
-      headers: { Authorization: "Bearer " + token }
-    })
-    .then(function (response) {
-      app.course = response.data.data;
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      })
+      .then(function(response) {
+        app.course = response.data.data;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
 
   },
   methods: {
