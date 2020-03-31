@@ -2625,11 +2625,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      perPage: 6,
+      currentPage: 1,
       items: []
     };
+  },
+  computed: {
+    rows: function rows() {
+      return this.items.length;
+    }
   },
   created: function created() {
     if (localStorage.getItem('token')) {
@@ -2694,6 +2714,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2722,7 +2743,28 @@ __webpack_require__.r(__webpack_exports__);
       console.log(error);
     });
   },
-  methods: {}
+  methods: {// onDelete(evt) {
+    //   evt.preventDefault()
+    //   let app = this;
+    //   let token = localStorage.getItem('token');
+    //
+    //   axios.delete(`/api/courses/${app.$route.params.id}`, {
+    //
+    //     }, {
+    //       headers: {
+    //         Authorization: `Bearer ${token}`
+    //       }
+    //     })
+    //     .then(function(response) {
+    //       app.$router.push('/lecturers');
+    //     })
+    //     .catch(function(error) {
+    //       console.log(error.response.data);
+    //
+    //       app.errors = error.response.data.error
+    //     });
+    // }
+  }
 });
 
 /***/ }),
@@ -2773,6 +2815,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2780,11 +2827,13 @@ __webpack_require__.r(__webpack_exports__);
         date: '',
         time: '',
         status: '',
-        course_id: [],
-        lecturer_id: []
+        course_id: '',
+        lecturer_id: ''
       },
       loggedIn: false,
-      errors: []
+      errors: [],
+      courses: [],
+      lecturers: []
     };
   },
   computed: {},
@@ -2792,6 +2841,28 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     if (localStorage.getItem('token')) {
       this.loggedIn = true;
+      var app = this;
+      var token = localStorage.getItem('token');
+      axios.get('/api/courses', {
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      }).then(function (response) {
+        console.log(response.data);
+        app.courses = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+      axios.get('/api/lecturers', {
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      }).then(function (response) {
+        console.log(response.data);
+        app.lecturers = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
     } // if not logged in refirected to index page
     else {
         this.loggedIn = false;
@@ -77345,7 +77416,16 @@ var render = function() {
         [
           _c(
             "b-table-simple",
-            { attrs: { hover: "", responsive: "" } },
+            {
+              attrs: {
+                hover: "",
+                responsive: "",
+                id: "my-table",
+                "per-page": _vm.perPage,
+                "current-page": _vm.currentPage,
+                small: ""
+              }
+            },
             [
               _c(
                 "b-head",
@@ -77417,7 +77497,26 @@ var render = function() {
               )
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("b-pagination", {
+            attrs: {
+              "total-rows": _vm.rows,
+              "per-page": _vm.perPage,
+              "aria-controls": "my-table"
+            },
+            model: {
+              value: _vm.currentPage,
+              callback: function($$v) {
+                _vm.currentPage = $$v
+              },
+              expression: "currentPage"
+            }
+          }),
+          _vm._v(" "),
+          _c("p", { staticClass: "mt-3" }, [
+            _vm._v("Current Page: " + _vm._s(_vm.currentPage))
+          ])
         ],
         1
       )
@@ -77660,21 +77759,30 @@ var render = function() {
                       }
                     },
                     [
-                      _c("b-form-select", {
-                        attrs: { options: _vm.course_id },
-                        model: {
-                          value: _vm.selected,
-                          callback: function($$v) {
-                            _vm.selected = $$v
-                          },
-                          expression: "selected"
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "mt-3" }, [
-                        _vm._v("Selected: "),
-                        _c("strong", [_vm._v(_vm._s(_vm.selected))])
-                      ])
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { name: "course" },
+                          model: {
+                            value: _vm.form.course_id,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "course_id", $$v)
+                            },
+                            expression: "form.course_id"
+                          }
+                        },
+                        _vm._l(_vm.courses, function(course) {
+                          return _c(
+                            "option",
+                            {
+                              attrs: { placeholder: "Enter course" },
+                              domProps: { value: course.id }
+                            },
+                            [_vm._v(_vm._s(course.title))]
+                          )
+                        }),
+                        0
+                      )
                     ],
                     1
                   ),
@@ -77689,21 +77797,30 @@ var render = function() {
                       }
                     },
                     [
-                      _c("b-form-input", {
-                        attrs: {
-                          id: "input-5",
-                          type: "",
-                          required: "",
-                          placeholder: "Enter lecturer"
+                      _c(
+                        "b-form-select",
+                        {
+                          attrs: { name: "lecturer" },
+                          model: {
+                            value: _vm.form.lecturer_id,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "lecturer_id", $$v)
+                            },
+                            expression: "form.lecturer_id"
+                          }
                         },
-                        model: {
-                          value: _vm.form.lecturer_id,
-                          callback: function($$v) {
-                            _vm.$set(_vm.form, "lecturer_id", $$v)
-                          },
-                          expression: "form.lecturer_id"
-                        }
-                      })
+                        _vm._l(_vm.lecturers, function(lecturer) {
+                          return _c(
+                            "option",
+                            {
+                              attrs: { placeholder: "Enter lecturer" },
+                              domProps: { value: lecturer.id }
+                            },
+                            [_vm._v(_vm._s(lecturer.name))]
+                          )
+                        }),
+                        0
+                      )
                     ],
                     1
                   ),

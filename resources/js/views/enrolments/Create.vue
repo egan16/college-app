@@ -17,15 +17,20 @@
         </b-form-group>
         <b-form-group id="input-group-4" label="Course" label-form="input-4">
 
-          <b-form-select v-model="selected" :options="course_id"></b-form-select>
-          <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
+          <b-form-select name="course" v-model="form.course_id">
+            <option placeholder="Enter course" v-for="course in courses" v-bind:value="course.id">{{course.title}}</option>
+          </b-form-select>
 
-          <!-- <b-form-input id="input-4" type="" required placeholder="Enter course" v-model="form.course_id">
-          </b-form-input> -->
         </b-form-group>
         <b-form-group id="input-group-5" label="Lecturer" label-form="input-5">
-          <b-form-input id="input-5" type="" required placeholder="Enter lecturer" v-model="form.lecturer_id">
-          </b-form-input>
+
+          <b-form-select name="lecturer" v-model="form.lecturer_id">
+            <option placeholder="Enter lecturer" v-for="lecturer in lecturers" v-bind:value="lecturer.id">{{lecturer.name}}</option>
+          </b-form-select>
+
+          <!-- <b-form-input id="input-5" type="" required placeholder="Enter lecturer" v-model="form.lecturer_id">
+          </b-form-input> -->
+
         </b-form-group>
 
         <b-button type="submit" varient="primary">Submit</b-button>
@@ -43,11 +48,13 @@ export default {
         date: '',
         time: '',
         status: '',
-        course_id: [],
-        lecturer_id: []
+        course_id: '',
+        lecturer_id: ''
       },
       loggedIn: false,
-      errors: []
+      errors: [],
+      courses: [],
+      lecturers: []
     }
   },
   computed: {
@@ -57,6 +64,33 @@ export default {
   created() {
     if (localStorage.getItem('token')) {
       this.loggedIn = true;
+      let app = this;
+      let token = localStorage.getItem('token');
+      axios.get('/api/courses', {
+          headers: {
+            Authorization: 'Bearer ' + token
+          }
+        })
+        .then(function(response) {
+          console.log(response.data);
+          app.courses = response.data.data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+
+        axios.get('/api/lecturers', {
+            headers: {
+              Authorization: 'Bearer ' + token
+            }
+          })
+          .then(function(response) {
+            console.log(response.data);
+            app.lecturers = response.data.data;
+          })
+          .catch(function(error) {
+            console.log(error);
+          })
     }
     // if not logged in refirected to index page
     else {
