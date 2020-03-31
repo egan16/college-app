@@ -3093,6 +3093,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -78368,22 +78377,29 @@ var render = function() {
             { attrs: { hover: "", responsive: "" } },
             [
               _c(
-                "b-head",
+                "b-col",
+                { attrs: { cols: "12" } },
                 [
                   _c(
-                    "b-tr",
+                    "b-head",
                     [
-                      _c("b-th", [_vm._v("Date")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Time")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Status")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Course")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Lecturer")]),
-                      _vm._v(" "),
-                      _c("b-th", [_vm._v("Actions")])
+                      _c(
+                        "b-tr",
+                        [
+                          _c("b-th", [_vm._v("Date")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Time")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Status")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Course")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Lecturer")]),
+                          _vm._v(" "),
+                          _c("b-th", [_vm._v("Actions")])
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -78438,13 +78454,26 @@ var render = function() {
                         "b-td",
                         [
                           _c(
-                            "router-link",
-                            { attrs: { to: "/enrolments/show/" + item.id } },
-                            [_vm._v("View ")]
+                            "b-button",
+                            {
+                              attrs: {
+                                size: "sm",
+                                variant: "dark",
+                                to: "/enrolments/show/" + item.id
+                              }
+                            },
+                            [_vm._v("View")]
                           ),
+                          _vm._v(" "),
                           _c(
-                            "router-link",
-                            { attrs: { to: "/enrolments/edit/" + item.id } },
+                            "b-button",
+                            {
+                              attrs: {
+                                size: "sm",
+                                variant: "outline-secondary",
+                                to: "/enrolments/edit/" + item.id
+                              }
+                            },
                             [_vm._v("Edit")]
                           )
                         ],
