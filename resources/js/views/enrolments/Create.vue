@@ -12,11 +12,6 @@
           </b-form-input>
         </b-form-group>
         <b-form-group id="input-group-3" label="Status" label-form="input-3">
-          <!-- <b-form-input id="input-3" type="text" required placeholder="Enter status" v-model="form.status">
-          </b-form-input> -->
-          <!-- <b-form-input id="input-3" type="radio" value="interested" required v-model="form.status">
-            <label for="interested">Interested</label>
-          </b-form-input> -->
           <b-form-radio v-model="form.status" name="status-radios" value="interested">Interested</b-form-radio>
           <b-form-radio v-model="form.status" name="status-radios" value="assigned">Assigned</b-form-radio>
           <b-form-radio v-model="form.status" name="status-radios" value="associate">Associate</b-form-radio>

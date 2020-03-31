@@ -2815,11 +2815,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2962,65 +2957,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       enrolment: {},
       show: true,
-      loggedIn: false
+      loggedIn: false,
+      courses: [],
+      lecturers: []
     };
   },
   created: function created() {
     // console.log(localStorage.getItem('token'));
     if (localStorage.getItem('token')) {
       this.loggedIn = true;
+
+      var _app = this;
+
+      var _token = localStorage.getItem('token');
+
+      axios.get('/api/courses', {
+        headers: {
+          Authorization: 'Bearer ' + _token
+        }
+      }).then(function (response) {
+        console.log(response.data);
+        _app.courses = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+      axios.get('/api/lecturers', {
+        headers: {
+          Authorization: 'Bearer ' + _token
+        }
+      }).then(function (response) {
+        console.log(response.data);
+        _app.lecturers = response.data.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
     } else {
       this.loggedIn = false;
     }
@@ -78004,21 +77979,77 @@ var render = function() {
                           }
                         },
                         [
-                          _c("b-form-input", {
-                            attrs: {
-                              id: "input-3",
-                              type: "text",
-                              required: "",
-                              placeholder: "Enter status"
-                            },
-                            model: {
-                              value: _vm.enrolment.status,
-                              callback: function($$v) {
-                                _vm.$set(_vm.enrolment, "status", $$v)
+                          _c(
+                            "b-form-radio",
+                            {
+                              attrs: {
+                                name: "status-radios",
+                                value: "interested"
                               },
-                              expression: "enrolment.status"
-                            }
-                          })
+                              model: {
+                                value: _vm.enrolment.status,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.enrolment, "status", $$v)
+                                },
+                                expression: "enrolment.status"
+                              }
+                            },
+                            [_vm._v("Interested")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-radio",
+                            {
+                              attrs: {
+                                name: "status-radios",
+                                value: "assigned"
+                              },
+                              model: {
+                                value: _vm.enrolment.status,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.enrolment, "status", $$v)
+                                },
+                                expression: "enrolment.status"
+                              }
+                            },
+                            [_vm._v("Assigned")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-radio",
+                            {
+                              attrs: {
+                                name: "status-radios",
+                                value: "associate"
+                              },
+                              model: {
+                                value: _vm.enrolment.status,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.enrolment, "status", $$v)
+                                },
+                                expression: "enrolment.status"
+                              }
+                            },
+                            [_vm._v("Associate")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "b-form-radio",
+                            {
+                              attrs: {
+                                name: "status-radios",
+                                value: "career_break"
+                              },
+                              model: {
+                                value: _vm.enrolment.status,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.enrolment, "status", $$v)
+                                },
+                                expression: "enrolment.status"
+                              }
+                            },
+                            [_vm._v("Career break")]
+                          )
                         ],
                         1
                       ),
@@ -78033,21 +78064,30 @@ var render = function() {
                           }
                         },
                         [
-                          _c("b-form-input", {
-                            attrs: {
-                              id: "input-4",
-                              type: "",
-                              required: "",
-                              placeholder: "Enter course"
+                          _c(
+                            "b-form-select",
+                            {
+                              attrs: { name: "course" },
+                              model: {
+                                value: _vm.enrolment.course_id,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.enrolment, "course_id", $$v)
+                                },
+                                expression: "enrolment.course_id"
+                              }
                             },
-                            model: {
-                              value: _vm.enrolment.course.title,
-                              callback: function($$v) {
-                                _vm.$set(_vm.enrolment.course, "title", $$v)
-                              },
-                              expression: "enrolment.course.title"
-                            }
-                          })
+                            _vm._l(_vm.courses, function(course) {
+                              return _c(
+                                "option",
+                                {
+                                  attrs: { placeholder: "Enter course" },
+                                  domProps: { value: course.id }
+                                },
+                                [_vm._v(_vm._s(course.title))]
+                              )
+                            }),
+                            0
+                          )
                         ],
                         1
                       ),
@@ -78062,21 +78102,30 @@ var render = function() {
                           }
                         },
                         [
-                          _c("b-form-input", {
-                            attrs: {
-                              id: "input-5",
-                              type: "",
-                              required: "",
-                              placeholder: "Enter lecturer_id"
+                          _c(
+                            "b-form-select",
+                            {
+                              attrs: { name: "lecturer" },
+                              model: {
+                                value: _vm.enrolment.lecturer_id,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.enrolment, "lecturer_id", $$v)
+                                },
+                                expression: "enrolment.lecturer_id"
+                              }
                             },
-                            model: {
-                              value: _vm.enrolment.lecturer.name,
-                              callback: function($$v) {
-                                _vm.$set(_vm.enrolment.lecturer, "name", $$v)
-                              },
-                              expression: "enrolment.lecturer.name"
-                            }
-                          })
+                            _vm._l(_vm.lecturers, function(lecturer) {
+                              return _c(
+                                "option",
+                                {
+                                  attrs: { placeholder: "Enter lecturer" },
+                                  domProps: { value: lecturer.id }
+                                },
+                                [_vm._v(_vm._s(lecturer.name))]
+                              )
+                            }),
+                            0
+                          )
                         ],
                         1
                       ),
