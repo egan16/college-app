@@ -12,7 +12,6 @@
           <b-tr>
             <b-td>{{ user.name }}</b-td>
             <b-td>{{ user.email }}</b-td>
-            <!-- <b-td><router-link :to="`/courses/edit/${item.id}`">Edit</router-link></b-td> -->
           </b-tr>
         </b-body>
       </b-table-simple>

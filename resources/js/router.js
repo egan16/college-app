@@ -6,6 +6,7 @@ import Login from './views/Login'
 import Register from './views/Register'
 import Example from './views/Example'
 import NoAccess from './views/NoAccess'
+import User from './views/User'
 
 import CoursesIndex from './views/courses/Index'
 import CoursesEdit from './views/courses/Edit'
@@ -52,6 +53,11 @@ export default new Router({
       path: '/noAccess',
       name: 'noAccess',
       component: NoAccess
+    },
+    {
+      path: '/user',
+      name: 'user',
+      component: User
     },
     {
       path: '/courses',
