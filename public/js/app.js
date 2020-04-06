@@ -2848,27 +2848,22 @@ __webpack_require__.r(__webpack_exports__);
       console.log(error);
     });
   },
-  methods: {// onDelete(evt) {
-    //   evt.preventDefault()
-    //   let app = this;
-    //   let token = localStorage.getItem('token');
-    //
-    //   axios.delete(`/api/courses/${app.$route.params.id}`, {
-    //
-    //     }, {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`
-    //       }
-    //     })
-    //     .then(function(response) {
-    //       app.$router.push('/lecturers');
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error.response.data);
-    //
-    //       app.errors = error.response.data.error
-    //     });
-    // }
+  methods: {
+    onDelete: function onDelete(evt) {
+      evt.preventDefault();
+      var app = this;
+      var token = localStorage.getItem('token');
+      axios["delete"]("/api/courses/" + app.course.id, {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        app.$router.push('/courses');
+      })["catch"](function (error) {
+        console.log(error.response.data);
+        app.errors = error.response.data.error;
+      });
+    }
   }
 });
 
@@ -3266,6 +3261,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3294,7 +3290,31 @@ __webpack_require__.r(__webpack_exports__);
       console.log(error);
     });
   },
-  methods: {}
+  methods: {
+    deleteEnrolments: function deleteEnrolments() {
+      var app = this;
+      var token = localStorage.getItem("token"); // loop through enrolments and send delete request to delete them
+
+      app.course.enrolments.forEach(function (enrolment) {
+        axios["delete"]("/api/enrolments/" + enrolment.id, {
+          headers: {
+            Authorization: "Bearer " + token
+          }
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }); // delete course or lecturer
+
+      axios["delete"]("/api/courses/" + app.course.id, {
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      }).then(function (response) {//do something
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -3680,30 +3700,22 @@ __webpack_require__.r(__webpack_exports__);
       console.log(error);
     });
   },
-  methods: {// onDelete(evt) {
-    //   evt.preventDefault()
-    //   let app = this;
-    //   let token = localStorage.getItem('token');
-    //
-    //   axios.delete(`/api/lecturers/${app.$route.params.id}`, {
-    //       name: app.form.name,
-    //       address: app.form.address,
-    //       phone: app.form.phone,
-    //       email: app.form.email
-    //     }, {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`
-    //       }
-    //     })
-    //     .then(function(response) {
-    //       app.$router.push('/lecturers');
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error.response.data);
-    //
-    //       app.errors = error.response.data.error
-    //     });
-    // }
+  methods: {
+    onDelete: function onDelete(evt) {
+      evt.preventDefault();
+      var app = this;
+      var token = localStorage.getItem('token');
+      axios["delete"]("/api/lecturers/" + app.lecturer.id, {
+        headers: {
+          Authorization: "Bearer ".concat(token)
+        }
+      }).then(function (response) {
+        app.$router.push('/lecturers');
+      })["catch"](function (error) {
+        console.log(error.response.data);
+        app.errors = error.response.data.error;
+      });
+    }
   }
 });
 
@@ -77997,6 +78009,25 @@ var render = function() {
                           )
                         ],
                         1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-td",
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: {
+                                type: "delete",
+                                size: "sm",
+                                variant: "danger"
+                              },
+                              on: { delete: _vm.onDelete }
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        ],
+                        1
                       )
                     ],
                     1
@@ -78841,6 +78872,25 @@ var render = function() {
                           )
                         ],
                         1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-td",
+                        [
+                          _c(
+                            "b-button",
+                            {
+                              attrs: {
+                                type: "delete",
+                                size: "sm",
+                                variant: "danger"
+                              },
+                              on: { delete: _vm.deleteEnrolments }
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        ],
+                        1
                       )
                     ],
                     1
@@ -79427,6 +79477,15 @@ var render = function() {
               )
             ],
             1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-button",
+            {
+              attrs: { type: "delete", size: "sm", variant: "danger" },
+              on: { delete: _vm.onDelete }
+            },
+            [_vm._v("Delete")]
           )
         ],
         1

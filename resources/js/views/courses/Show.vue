@@ -24,7 +24,7 @@
           <b-td>
             <b-button size="sm" variant="outline-secondary" :to="`/courses/edit/${course.id}`">Edit</b-button>
           </b-td>
-          <!-- <b-td><b-button @delete="onDelete" type="delete" size="sm" variant="danger">Delete</b-button></b-td> -->
+          <b-td><b-button @delete="onDelete" type="delete" size="sm" variant="danger">Delete</b-button></b-td>
         </b-tr>
       </b-body>
     </b-table-simple>
@@ -64,27 +64,25 @@ export default {
 
   },
   methods: {
-    // onDelete(evt) {
-    //   evt.preventDefault()
-    //   let app = this;
-    //   let token = localStorage.getItem('token');
-    //
-    //   axios.delete(`/api/courses/${app.$route.params.id}`, {
-    //
-    //     }, {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`
-    //       }
-    //     })
-    //     .then(function(response) {
-    //       app.$router.push('/lecturers');
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error.response.data);
-    //
-    //       app.errors = error.response.data.error
-    //     });
-    // }
+    onDelete(evt) {
+      evt.preventDefault()
+      let app = this;
+      let token = localStorage.getItem('token');
+
+      axios.delete("/api/courses/" + app.course.id, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then(function(response) {
+          app.$router.push('/courses');
+        })
+        .catch(function(error) {
+          console.log(error.response.data);
+
+          app.errors = error.response.data.error
+        });
+    }
   }
 }
 </script>

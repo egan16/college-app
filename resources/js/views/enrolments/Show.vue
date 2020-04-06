@@ -28,6 +28,7 @@
           <b-td>
             <b-button size="sm" variant="outline-secondary" :to="`/enrolments/edit/${enrolment.id}`">Edit</b-button>
           </b-td>
+          <b-td><b-button @delete="deleteEnrolments" type="delete" size="sm" variant="danger">Delete</b-button></b-td>
         </b-tr>
       </b-body>
     </b-table-simple>
@@ -67,7 +68,32 @@ export default {
 
   },
   methods: {
+    deleteEnrolments() {
+      let app = this;
+      let token = localStorage.getItem("token");
 
+  // loop through enrolments and send delete request to delete them
+      app.course.enrolments.forEach((enrolment) => {
+        axios
+          .delete("/api/enrolments/" + enrolment.id, {
+            headers: { Authorization: "Bearer " + token }
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      });
+  // delete course or lecturer
+      axios
+        .delete("/api/courses/" + app.course.id, {
+          headers: { Authorization: "Bearer " + token }
+        })
+        .then(function(response) {
+        //do something
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
   }
 }
 </script>

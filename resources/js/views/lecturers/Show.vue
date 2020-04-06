@@ -25,7 +25,7 @@
         </b-tr>
       </b-body>
     </b-table-simple>
-    <!-- <b-button @delete="onDelete" type="delete" variant="danger">Delete</b-button> -->
+    <b-button @delete="onDelete" type="delete" size="sm" variant="danger">Delete</b-button>
   </b-col>
 </b-row>
 </template>
@@ -62,30 +62,26 @@ export default {
 
   },
   methods: {
-    // onDelete(evt) {
-    //   evt.preventDefault()
-    //   let app = this;
-    //   let token = localStorage.getItem('token');
-    //
-    //   axios.delete(`/api/lecturers/${app.$route.params.id}`, {
-    //       name: app.form.name,
-    //       address: app.form.address,
-    //       phone: app.form.phone,
-    //       email: app.form.email
-    //     }, {
-    //       headers: {
-    //         Authorization: `Bearer ${token}`
-    //       }
-    //     })
-    //     .then(function(response) {
-    //       app.$router.push('/lecturers');
-    //     })
-    //     .catch(function(error) {
-    //       console.log(error.response.data);
-    //
-    //       app.errors = error.response.data.error
-    //     });
-    // }
+    onDelete(evt) {
+      evt.preventDefault()
+      let app = this;
+      let token = localStorage.getItem('token');
+
+      axios.delete("/api/lecturers/" + app.lecturer.id, {
+
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        .then(function(response) {
+          app.$router.push('/lecturers');
+        })
+        .catch(function(error) {
+          console.log(error.response.data);
+
+          app.errors = error.response.data.error
+        });
+    }
   }
 }
 </script>
