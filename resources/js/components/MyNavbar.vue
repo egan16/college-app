@@ -44,6 +44,9 @@
 <script>
 export default {
   name: "myNavbar",
+  props: {
+    loggedIn: Boolean
+  },
   // checks if user is logged in... allows user to view page if logged in
   created() {
     if (localStorage.getItem('token')) {
@@ -61,6 +64,7 @@ export default {
       console.log("Logged out");
       localStorage.removeItem('token');
       app.loggedIn = false;
+      this.$emit('logout'); //<-- tells App.vue to update loggedIn
       app.$router.push('/');
     }
   }

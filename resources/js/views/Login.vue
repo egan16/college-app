@@ -53,6 +53,7 @@ export default {
       .then(function(response){
         localStorage.setItem('token', response.data.token)
         app.loggedIn = true;
+        app.$emit('login');
         app.$router.push('/');
       })
       .catch(function(error) {

@@ -38,7 +38,7 @@ export default {
 
     let app = this;
     let token = localStorage.getItem('token');
-    axios.get(`/api/user/${app.$route.params.id}`, {
+    axios.get(`/api/user`, {
       headers: { Authorization: "Bearer " + token }
     })
     .then(function (response) {

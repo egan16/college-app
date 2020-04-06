@@ -1,8 +1,8 @@
 <template>
   <div>
-    <MyNavbar />
+    <MyNavbar :loggedIn="this.loggedIn" v-on:login="setLoggedIn" v-on:logout="setLoggedOut" />
     <b-container>
-      <router-view />
+      <router-view :loggedIn="this.loggedIn" v-on:login="setLoggedIn" v-on:logout="setLoggedOut" />
     </b-container>
   </div>
 </template>
@@ -16,7 +16,24 @@ export default {
   },
   data() {
     return {
-
+      loggedIn: false
+    }
+  },
+  created() {
+    if (localStorage.getItem('token')) {
+      this.loggedIn = true;
+      console.log("APP: ",this.loggedIn);
+    }
+    else {
+      this.loggedIn = false;
+    }
+  },
+  methods: {
+    setLoggedIn() {
+      this.loggedIn = true;
+    },
+    setLoggedOut() {
+      this.loggedIn = false;
     }
   }
 }

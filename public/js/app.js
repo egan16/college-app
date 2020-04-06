@@ -1948,7 +1948,25 @@ __webpack_require__.r(__webpack_exports__);
     MyNavbar: _components_MyNavbar__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
-    return {};
+    return {
+      loggedIn: false
+    };
+  },
+  created: function created() {
+    if (localStorage.getItem('token')) {
+      this.loggedIn = true;
+      console.log("APP: ", this.loggedIn);
+    } else {
+      this.loggedIn = false;
+    }
+  },
+  methods: {
+    setLoggedIn: function setLoggedIn() {
+      this.loggedIn = true;
+    },
+    setLoggedOut: function setLoggedOut() {
+      this.loggedIn = false;
+    }
   }
 });
 
@@ -2008,6 +2026,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "myNavbar",
+  props: {
+    loggedIn: Boolean
+  },
   // checks if user is logged in... allows user to view page if logged in
   created: function created() {
     if (localStorage.getItem('token')) {
@@ -2023,6 +2044,8 @@ __webpack_require__.r(__webpack_exports__);
       console.log("Logged out");
       localStorage.removeItem('token');
       app.loggedIn = false;
+      this.$emit('logout'); //<-- tells App.vue to update loggedIn
+
       app.$router.push('/');
     }
   }
@@ -2213,6 +2236,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         localStorage.setItem('token', response.data.token);
         app.loggedIn = true;
+        app.$emit('login');
         app.$router.push('/');
       })["catch"](function (error) {
         console.log(error);
@@ -2382,7 +2406,7 @@ __webpack_require__.r(__webpack_exports__);
 
     var app = this;
     var token = localStorage.getItem('token');
-    axios.get("/api/user/".concat(app.$route.params.id), {
+    axios.get("/api/user", {
       headers: {
         Authorization: "Bearer " + token
       }
@@ -76581,7 +76605,23 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    [_c("MyNavbar"), _vm._v(" "), _c("b-container", [_c("router-view")], 1)],
+    [
+      _c("MyNavbar", {
+        attrs: { loggedIn: this.loggedIn },
+        on: { login: _vm.setLoggedIn, logout: _vm.setLoggedOut }
+      }),
+      _vm._v(" "),
+      _c(
+        "b-container",
+        [
+          _c("router-view", {
+            attrs: { loggedIn: this.loggedIn },
+            on: { login: _vm.setLoggedIn, logout: _vm.setLoggedOut }
+          })
+        ],
+        1
+      )
+    ],
     1
   )
 }
